@@ -1,48 +1,66 @@
 package controller;
-import model.Project ;
-import java.util.Scanner ;
+import model.Project;
+import java.util.Scanner;
 
 public class ProjectController {
-    Project[] db = new Project[200] ;
-    int count = 0 ;
+    Project[] db = new Project[200];
+    int count = 0;
     Scanner input = new Scanner(System.in);
-//    Create
-public void createProject() {
-    db[count] = new Project();
 
-    System.out.println("           CREATE NEW PROJECT");
-    System.out.println("====================================\n");
+    //    Create
+    public void createProject() {
+        db[count] = new Project();
 
-    System.out.print("Enter Project ID (unique): ");
-    db[count].id = input.nextInt();
-    input.nextLine();
+        System.out.println("           CREATE NEW PROJECT");
+        System.out.println("====================================\n");
 
-    System.out.print("Enter Project Name: ");
-    db[count].name = input.nextLine();
+        int id;
+        boolean isDuplicate;
 
-    System.out.print("Enter Project Description: ");
-    db[count].description = input.nextLine();
+        do {
+            isDuplicate = false;
 
-    int prior;
-    do
-    {
-        System.out.print("Enter Project's Priority (1-Low, 2-Medium, 3-High): ");
-        prior = input.nextInt();
-        input.nextLine();
+            System.out.print("Enter Project ID (unique): ");
+            id = input.nextInt();
+            input.nextLine();
 
-        if (prior < 1 || prior > 3)
-        {
-            System.out.println("Invalid input! Please enter 1, 2, or 3.");
-        }
-    } while (prior < 1 || prior > 3);
+            for (int i = 0; i < count; i++) {
+                if (db[i].id == id) {
+                    System.out.println("This ID is already used. Enter a unique ID!");
+                    isDuplicate = true;
+                    break;
+                }
+            }
 
-    db[count].priority = prior;
-    count++;
+        } while (isDuplicate);
 
-    System.out.println("\n=====================================================");
-    System.out.println("        PROJECT ADDED SUCCESSFULLY!");
-    System.out.println("=====================================================");
-}
+        db[count].id = id;
+
+        System.out.print("Enter Project Name: ");
+        db[count].name = input.nextLine();
+
+        System.out.print("Enter Project Description: ");
+        db[count].description = input.nextLine();
+
+        int prior;
+        do {
+            System.out.print("Enter Project's Priority (1-Low, 2-Medium, 3-High): ");
+            prior = input.nextInt();
+            input.nextLine();
+
+            if (prior < 1 || prior > 3) {
+                System.out.println("Invalid input! Please enter 1, 2, or 3.");
+            }
+        } while (prior < 1 || prior > 3);
+
+        db[count].priority = prior;
+        count++;
+
+        System.out.println("\n=====================================================");
+        System.out.println("        PROJECT ADDED SUCCESSFULLY!");
+        System.out.println("=====================================================");
+    }
+
     // READ
     public void showProjects() {
         if (count == 0) {
@@ -55,7 +73,7 @@ public void createProject() {
         System.out.println("====================================");
 
         for (int i = 0; i < count; i++) {
-            System.out.println((i+1) + ").");
+            System.out.println((i + 1) + ").");
             System.out.println("Project ID: " + db[i].id);
             System.out.println("Project Name: " + db[i].name);
             System.out.println("Project Description: " + db[i].description);
@@ -86,14 +104,12 @@ public void createProject() {
                 db[i].description = input.nextLine();
 
                 int prior;
-                do
-                {
+                do {
                     System.out.print("Enter Project's Priority (1-Low, 2-Medium, 3-High): ");
                     prior = input.nextInt();
                     input.nextLine();
 
-                    if (prior < 1 || prior > 3)
-                    {
+                    if (prior < 1 || prior > 3) {
                         System.out.println("Invalid input! Please enter 1, 2, or 3.");
                     }
                 } while (prior < 1 || prior > 3);
