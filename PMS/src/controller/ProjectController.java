@@ -65,7 +65,7 @@ public class ProjectController {
     public void showProjects() {
         if (count == 0) {
             System.out.println("\n====================================");
-            System.out.println("        No projects found.");
+            System.out.println("        No projects found!");
             System.out.println("====================================");
             return;
         }
