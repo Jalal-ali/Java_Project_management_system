@@ -1,0 +1,20 @@
+Classes
+→ Project, ProjectController, Main
+Objects
+→ Creating instances using new Project()
+Arrays (Object Arrays)
+→ Project[] db = new Project[200];
+Variables & Data Types
+→ int, String
+Methods (Functions)
+→ createProject(), updateProject(), etc.
+Conditional Statements
+→ if, else if, else
+Loops
+→ for, while, do-while
+Switch Case (Control Flow)
+→ Menu handling
+Packages
+→ model, controller
+User Input Handling
+→ Scanner
